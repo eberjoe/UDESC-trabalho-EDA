@@ -24,3 +24,10 @@ int leNaPos(Lista *l, void *info, int pos);
 int insereNaOrdem(Lista *l, void *info, int (*comp) (void *, void *));
 void mostra_lista(Lista l, void (*mostra) (void *));
 void limpa_lista(Lista *l);
+
+/*
+void inicializa_conjuntos(Conjuntos *p, int t);
+int cria_conjunto(Conjuntos *p, void *representante, int(*comp) (void *, void *));
+int inicio(Conjuntos *p, void *rep1, void *rep2, int(*comp) (void *, void *));
+void mostra_conjuntos(Conjuntos c, void(*mostra) (void *));
+*/
