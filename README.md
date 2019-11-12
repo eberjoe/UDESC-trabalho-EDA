@@ -21,5 +21,7 @@ Finalmente, implemente uma aplicação que oferece um menu de texto para a manip
 
 ## Informações importantes:
 [ ] Equipe: 2 ou 3 alunos.
+
 [ ] Entrega: por e-mail, até o dia 27/11.
+
 [ ] Apresentação: dia 27/11, no laboratório, durante o horário de aula. Alternativamente, as equipes que preferirem apresentar antes podem agendar um horário para apresentação na sala do professor.
