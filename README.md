@@ -7,7 +7,7 @@ Conjuntos disjuntos podem ser representados por uma estrutura que mantém uma co
 
 Tal estrutura pode ser implementada como uma multi-lista, ou seja, uma lista de listas. Cada elemento da lista principal aponta para o descritor de outra lista, que neste caso é um dos conjuntos. Por fim, cada elemento das listas secundárias representam os membros propriamente ditos. Além disso, tal como abordado ao longo da disciplina, considera-se que tal estrutura é genérica. Nesse sentido, cada membro é acessado através de um ponteiro do tipo ```void```.
 
-Sendo x membro do conjunto (portanto, um ponteiro void), tal estrutura deve implementar três funções básicas:
+Sendo x membro do conjunto (portanto, um ponteiro ```void```), tal estrutura deve implementar três funções básicas:
 1. ```Cria_Conjunto ( x )``` : cria um novo conjunto cujo único membro (e, portanto, seu representante) é x. Já que os conjuntos são disjuntos, x não pode pertencer a nenhum outro conjunto da estrutura. A dica aqui é usar a já conhecida função ```compara ()```, via call-back.
 2. ```União ( x , y )``` : faz a união dos dois conjuntos cujos representantes são x e y (Sx e Sy) em um novo conjunto. O representante desse novo conjunto pode ser qualquer membro de Sx U Sy, embora muitas implementações dessa função escolham um dos representantes de Sx ou Sy. Como é necessário que os conjuntos sejam disjuntos, tal operação “destrói” os conjuntos Sx e Sy. Já que a implementação solicitada é usando listas, a operação pode ser facilmente implementada através de um simples ajuste de ponteiros fazendo um append
 entre Sx e Sy.
@@ -20,8 +20,8 @@ Finalmente, implemente uma aplicação que oferece um menu de texto para a manip
 * Individuais: domínio do assunto e do programa implementado.
 
 ## Informações importantes:
-* [-] Equipe: 2 ou 3 alunos.
+* [ ] Equipe: 2 ou 3 alunos.
 
-* [-] Entrega: por e-mail, até o dia 27/11.
+* [ ] Entrega: por e-mail, até o dia 27/11.
 
-* [-] Apresentação: dia 27/11, no laboratório, durante o horário de aula. Alternativamente, as equipes que preferirem apresentar antes podem agendar um horário para apresentação na sala do professor.
+* [ ] Apresentação: dia 27/11, no laboratório, durante o horário de aula. Alternativamente, as equipes que preferirem apresentar antes podem agendar um horário para apresentação na sala do professor.
