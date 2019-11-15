@@ -9,25 +9,24 @@ typedef struct ele {
 typedef struct {
     Elemento *cabeca;
     int tamInfo, qtd;
-}Lista;
+}Conjuntos;
 
-void inicializa_lista(Lista *l, int t);
-int lista_vazia(Lista *l);
-int insereNoInicio(Lista *l, void *info);
-int removeDoInicio(Lista *l, void *info);
-int insereNoFim(Lista *l, void *info);
-int removeDoFim(Lista *l, void *info);
-int insereNaPos(Lista *l, void *info, int pos);
-int removeDaPos(Lista *l, void *info, int pos);
-int modificaNaPos(Lista *l, void *info, int pos);
-int leNaPos(Lista *l, void *info, int pos);
-int insereNaOrdem(Lista *l, void *info, int (*comp) (void *, void *));
-void mostra_lista(Lista l, void (*mostra) (void *));
-void limpa_lista(Lista *l);
+void inicializa_conjuntos(Conjuntos *l, int t);
+int lista_vazia(Conjuntos *l);
+int insereNoInicio(Conjuntos *l, void *info);
+int removeDoInicio(Conjuntos *l, void *info);
+int insereNoFim(Conjuntos *l, void *info);
+int removeDoFim(Conjuntos *l, void *info);
+int insereNaPos(Conjuntos *l, void *info, int pos);
+int removeDaPos(Conjuntos *l, void *info, int pos);
+int modificaNaPos(Conjuntos *l, void *info, int pos);
+int leNaPos(Conjuntos *l, void *info, int pos);
+int insereNaOrdem(Conjuntos *l, void *info, int (*comp) (void *, void *));
+void mostra_conjuntos(Conjuntos l, void (*mostra) (void *));
+void limpa_lista(Conjuntos *l);
 
-/*
-void inicializa_conjuntos(Conjuntos *p, int t);
+// funcoes especializadas para o trabalho
+
 int cria_conjunto(Conjuntos *p, void *representante, int(*comp) (void *, void *));
 int inicio(Conjuntos *p, void *rep1, void *rep2, int(*comp) (void *, void *));
-void mostra_conjuntos(Conjuntos c, void(*mostra) (void *));
-*/
+

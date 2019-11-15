@@ -3,13 +3,13 @@
 #include <stdio.h>
 #include "lista.h"
 
-void inicializa_lista(Lista *l, int t) {
+void inicializa_conjuntos(Conjuntos *l, int t) {
     l->cabeca = NULL;
     l->tamInfo = t;
     l->qtd = 0;
 }
 
-int lista_vazia(Lista *l) {
+int lista_vazia(Conjuntos *l) {
     return !l->qtd;
 }
 
@@ -26,7 +26,7 @@ Elemento* aloca_ele(void *x, int t){
 	return p;
 }
 
-int insereNoInicio(Lista *l, void *info) {
+int insereNoInicio(Conjuntos *l, void *info) {
     Elemento *p = aloca_ele(info, l->tamInfo);
     if (!p)
         return 0; // falta memória
@@ -36,7 +36,7 @@ int insereNoInicio(Lista *l, void *info) {
     return 1; // sucesso
 }
 
-int removeDoInicio(Lista *l, void *info) {
+int removeDoInicio(Conjuntos *l, void *info) {
     if (lista_vazia(l))
         return ERROLISTA_VAZIA;
     Elemento *p = l->cabeca;
@@ -48,7 +48,7 @@ int removeDoInicio(Lista *l, void *info) {
     return 1; // sucesso
 }
 
-int insereNoFim(Lista *l, void *info) {
+int insereNoFim(Conjuntos *l, void *info) {
     Elemento *p = aloca_ele(info, l->tamInfo);
     if (!p)
         return 0; // falta memória
@@ -66,7 +66,7 @@ int insereNoFim(Lista *l, void *info) {
     return 1; // sucesso
 }
 
-int removeDoFim(Lista *l, void *info) {
+int removeDoFim(Conjuntos *l, void *info) {
     if (lista_vazia(l))
         return ERROLISTA_VAZIA;
     if (l->qtd == 1)
@@ -83,7 +83,7 @@ int removeDoFim(Lista *l, void *info) {
     return 1; // sucesso
 }
 
-int insereNaPos(Lista *l, void *info, int pos) {
+int insereNaPos(Conjuntos *l, void *info, int pos) {
     if (pos < 0 || pos > l->qtd)
         return ERRO_POS_INVALIDA;
     if (!pos)
@@ -101,7 +101,7 @@ int insereNaPos(Lista *l, void *info, int pos) {
     return 1; // sucesso
 }
 
-int removeDaPos(Lista *l, void *info, int pos) {
+int removeDaPos(Conjuntos *l, void *info, int pos) {
     if (lista_vazia(l))
         return ERROLISTA_VAZIA;
     if (pos < 0 || pos >= l->qtd)
@@ -121,7 +121,7 @@ int removeDaPos(Lista *l, void *info, int pos) {
     return 1; // sucesso
 }
 
-int modificaNaPos(Lista *l, void *info, int pos) {
+int modificaNaPos(Conjuntos *l, void *info, int pos) {
     if (lista_vazia(l))
         return ERROLISTA_VAZIA;
     if (pos < 0 || pos >= l->qtd)
@@ -134,7 +134,7 @@ int modificaNaPos(Lista *l, void *info, int pos) {
     return 1; // sucesso
 }
 
-int leNaPos(Lista *l, void *info, int pos) {
+int leNaPos(Conjuntos *l, void *info, int pos) {
     if (lista_vazia(l))
         return ERROLISTA_VAZIA;
     if (pos < 0 || pos >= l->qtd)
@@ -147,7 +147,7 @@ int leNaPos(Lista *l, void *info, int pos) {
     return 1; // sucesso
 }
 
-int insereNaOrdem(Lista *l, void *info, int (*comp) (void *, void *)) {
+int insereNaOrdem(Conjuntos *l, void *info, int (*comp) (void *, void *)) {
     Elemento *p = l->cabeca;
     int cont = 0;
     while (p && comp(info, p->info) > 0) {
@@ -157,11 +157,11 @@ int insereNaOrdem(Lista *l, void *info, int (*comp) (void *, void *)) {
     return insereNaPos(l, info, cont);
 }
 
-void mostra_lista(Lista l, void (*mostra) (void *)) {
+void mostra_conjuntos(Conjuntos l, void (*mostra) (void *)) {
     if (lista_vazia(&l))
-        printf("\nLista vazia!\n");
+        printf("\nConjunto vazio!\n");
     else {
-        printf("\nDados da lista:\n");
+        printf("\nElementos do conjunto:\n");
         Elemento *p = l.cabeca;
         int count =0;
         while (p) {
@@ -173,7 +173,7 @@ void mostra_lista(Lista l, void (*mostra) (void *)) {
     }
 }
 
-void limpa_lista(Lista *l) {
+void limpa_lista(Conjuntos *l) {
     Elemento *p = l->cabeca, *q;
     while (p) {
         q = p;
