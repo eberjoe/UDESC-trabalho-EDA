@@ -163,12 +163,9 @@ void mostra_conjuntos(Conjuntos l, void (*mostra) (void *)) {
     else {
         printf("\nElementos do conjunto:\n");
         Elemento *p = l.cabeca;
-        int count =0;
         while (p) {
-            printf("%d\t", count);
             mostra(p->info);
             p = p->proximo;
-            count++;
         }
     }
 }
