@@ -181,3 +181,19 @@ void limpa_lista(Conjuntos *l) {
     l->cabeca = NULL;
     l->qtd = 0;
 }
+
+int cria_conjunto(Conjuntos *p, void *rep, int (*comp)(void *, void *)) {
+    int i;
+    for (i = 0;i < p->qtd; i++){
+        if (!comp(p->cabeca, rep))
+            return 0;
+    }
+    Conjuntos c;
+    inicializa_conjuntos(&c, sizeof(Conjuntos));
+    Elemento *x = aloca_ele(rep, c.tamInfo);
+    if (!x)
+        return 0;
+    if (insereNoInicio(&c, rep))
+        return insereNoFim(p, &c);
+    return 0;
+}

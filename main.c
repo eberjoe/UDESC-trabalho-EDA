@@ -17,18 +17,15 @@ int main() {
     for (i = 1; i <= lin; i++) {
         printf("Entre um elemento representante 'int' para o conjunto %d: ", i);
         scanf("%d", &x);
-        inicializa_conjuntos(&sub, sizeof(int));
-        insereNoInicio(&sub, &x);
-        insereNoFim(&m, &sub);
-        if (!disjuntos(m)) {
-            printf("Os conjuntos devem ser disjuntos! Os elementos devem ser diferentes!");
-            return 1;
+        if (!cria_conjunto(&m, &x, compara_int)) {
+            printf("Os elementos devem ser diferentes!");
+            return 0;
         }
     }
 
     mostra_tudoXXX(m);
 
-    while (true) {
+    while (1) {
         printf("\nEscolha uma opcao:\n[1] Inserir elementos\n[2] Unir conjuntos\n[3] Mostrar conjuntos\n[4] Remover conjunto\n[5] Fazer faxina e sair :");
         scanf("%d", &op);
         switch(op) {
@@ -49,9 +46,11 @@ int main() {
         }
     }
     return 1;
+}
 
 void destroiTudo(Conjuntos m) {
     Conjuntos sub;
+    int i;
     for (i = 0; i < m.qtd; i++) {
         leNaPos(&m, &sub, i);
         limpa_lista(&sub);
@@ -70,36 +69,14 @@ int compara_int(void *x, void *y) {
     return 0;
 }
 
-int disjuntos(Conjuntos c) {
-    if (c.qtd < 2)
-        return 1;
-    int i, j, k, l, x, y;
-    Conjuntos sub, sub2;
-    for (i = 0; i < c.qtd-1; i++) {
-        leNaPos(&c, &sub, i);
-        for (j = 0; j < sub.qtd; j++) {
-            leNaPos(&sub, &x, j);
-            for (k = i+1; k < c.qtd; k++) {
-                leNaPos(&c, &sub2, k);
-                for (l = 0; l < sub2.qtd; l++) {
-                    leNaPos(&sub2, &y, l);
-                    if (!compara_int(&x, &y))
-                        return 0;
-                }
-            }
-        }
+void mostra_tudoXXX(Conjuntos m) {
+    int i;
+    Conjuntos sub;
+    printf("Dados dos conjuntos:\n");
+    for (i = 0; i < m.qtd; i++) {
+        leNaPos(&m, &sub, i);
+        mostra_conjuntos(sub, mostra_int);
+        printf("\n");
     }
-    return 1; // sao disjuntos
 }
-
-    void mostra_tudoXXX(Conjuntos m) {
-        int i;
-        Conjuntos sub;
-        printf("Dados dos conjuntos:\n");
-        for (i = 0; i < m.qtd; i++) {
-            leNaPos(&m, &sub, i);
-            mostra_conjuntos(sub, mostra_int);
-            printf("\n");
-        }
-    }
 

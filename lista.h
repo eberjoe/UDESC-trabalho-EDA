@@ -27,6 +27,6 @@ void limpa_lista(Conjuntos *l);
 
 // funcoes especializadas para o trabalho
 
-int cria_conjunto(Conjuntos *p, void *representante, int(*comp) (void *, void *));
+int cria_conjunto(Conjuntos *p, void *rep, int(*comp) (void *, void *));
 int inicio(Conjuntos *p, void *rep1, void *rep2, int(*comp) (void *, void *));
 
