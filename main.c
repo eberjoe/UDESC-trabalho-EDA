@@ -17,7 +17,7 @@ int main() {
     for (i = 1; i <= lin; i++) {
         printf("Entre um elemento representante 'int' para o conjunto %d: ", i);
         scanf("%d", &x);
-        if (!cria_conjunto(&m, &x, compara_int)) {
+        if (cria_conjunto(&m, &x, compara_int) == ERRO_ELEMENTOREPETIDO) {
             printf("Os elementos devem ser diferentes!");
             return 0;
         }
@@ -26,23 +26,24 @@ int main() {
     mostra_tudoXXX(m);
 
     while (1) {
-        printf("\nEscolha uma opcao:\n[1] Inserir elementos\n[2] Unir conjuntos\n[3] Mostrar conjuntos\n[4] Remover conjunto\n[5] Fazer faxina e sair :");
+        printf("\nEscolha uma opcao:\n[1] Unir conjuntos\n[2] Mostrar conjuntos\n[3] Remover conjunto\n[4] Buscar conjunto\n[5] Fazer faxina e sair :");
         scanf("%d", &op);
         switch(op) {
         case 1:
-            printf("Inserir em qual conjunto? ");
-            scanf("%d", &rep);
-            printf("Entre o valor a ser inserido: ");
-            scanf("%d", &x);
-            cont = 0;
             for (i = 0; i < m.qtd; i++) {
-                leNaPos(&m, &sub, i);
-                if (!compara_int(&sub.cabeca, &rep)) {
-                    cont++;
-                    printf("Voce perdeu! Deveria ter inserido um valor direfente!");
-                    return 0;
-                }
+                leNaPos(&m, &x, i);
+
             }
+        case 4:
+            printf("Digite o representante: ");
+            scanf("%d", &x);
+            if (!busca_conj(&m, &sub, &x, compara_int)) {
+                printf("\nConjunto não encontrado!");
+            } else {
+                mostra_conjuntos(sub, mostra_int);
+            }
+        default:
+            break;
         }
     }
     return 1;

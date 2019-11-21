@@ -184,16 +184,33 @@ void limpa_lista(Conjuntos *l) {
 
 int cria_conjunto(Conjuntos *p, void *rep, int (*comp)(void *, void *)) {
     int i;
-    for (i = 0;i < p->qtd; i++){
-        if (!comp(p->cabeca, rep))
-            return 0;
-    }
     Conjuntos c;
+    Elemento *ind = aloca_ele(&c, sizeof(Conjuntos));
+    if (!ind)
+        return 0;
+    for (i = 0;i < p->qtd; i++){
+        leNaPos(p, &ind, i);
+        if (!comp(ind->info, rep))
+            return ERRO_ELEMENTOREPETIDO;
+    }
     inicializa_conjuntos(&c, sizeof(Conjuntos));
     Elemento *x = aloca_ele(rep, c.tamInfo);
     if (!x)
         return 0;
     if (insereNoInicio(&c, rep))
         return insereNoFim(p, &c);
+    return 0;
+}
+
+int busca_conj(Conjuntos *m, Conjuntos *p, void *rep, int(*comp) (void *, void *)){
+    int i;
+    Conjuntos sub;
+    for (i = 0; i < m->qtd; i++) {
+        leNaPos(m, &sub, i);
+        printf("posicao %d", i);
+        if (!comp(sub.cabeca->info, rep))
+            *p = sub;
+            return 1;
+    }
     return 0;
 }
