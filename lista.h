@@ -5,12 +5,12 @@
 typedef struct ele {
     void *info;
     struct ele *proximo;
-}Elemento;
+} Elemento;
 
 typedef struct {
     Elemento *cabeca;
     int tamInfo, qtd;
-}Conjuntos;
+} Conjuntos;
 
 void inicializa_conjuntos(Conjuntos *l, int t);
 int lista_vazia(Conjuntos *l);
@@ -29,5 +29,5 @@ void limpa_lista(Conjuntos *l);
 // funcoes especializadas para o trabalho
 
 int cria_conjunto(Conjuntos *p, void *rep, int(*comp) (void *, void *));
-int uniao(Conjuntos *p, void *rep1, void *rep2, int(*comp) (void *, void *));
-int busca_conj(Conjuntos *m, Conjuntos *p, void *rep, int(*comp) (void *, void *));
+int uniao(Conjuntos *a, Conjuntos *b);
+Conjuntos busca_conj(Conjuntos *m, void *rep, int(*comp) (void *, void *));
