@@ -194,23 +194,31 @@ int cria_conjunto(Conjuntos *p, void *rep, int (*comp)(void *, void *)) {
             return ERRO_ELEMENTOREPETIDO;
     }
     inicializa_conjuntos(&c, sizeof(Conjuntos));
-    Elemento *x = aloca_ele(rep, c.tamInfo);
-    if (!x)
-        return 0;
+
     if (insereNoInicio(&c, rep))
         return insereNoFim(p, &c);
     return 0;
 }
 
-int busca_conj(Conjuntos *m, Conjuntos *p, void *rep, int(*comp) (void *, void *)){
+Conjuntos busca_conj(Conjuntos *m, void *rep, int(*comp) (void *, void *)){
     int i;
     Conjuntos sub;
+
     for (i = 0; i < m->qtd; i++) {
         leNaPos(m, &sub, i);
-        printf("posicao %d", i);
-        if (!comp(sub.cabeca->info, rep))
-            *p = sub;
-            return 1;
+
+        if (!comp(sub.cabeca->info, rep)) {
+            printf("busca_conj sub.cabeca->info %d\n", *(int*) sub.cabeca->info);
+            return sub;
+        }
     }
+
+    Conjuntos vazio;
+    return vazio;
+}
+
+int uniao(Conjuntos *a, Conjuntos *b) {
+    a->cabeca->proximo = b->cabeca;
+    b->cabeca = NULL;
     return 0;
 }
