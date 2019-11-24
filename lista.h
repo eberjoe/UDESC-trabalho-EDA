@@ -1,6 +1,7 @@
 #define ERROLISTA_VAZIA -1
 #define ERRO_POS_INVALIDA -2
 #define ERRO_ELEMENTOREPETIDO -3
+#define ERRO_CONJUNTO_INEXISTENTE -1
 
 typedef struct ele {
     void *info;
@@ -24,7 +25,7 @@ int modificaNaPos(Conjuntos *l, void *info, int pos);
 int leNaPos(Conjuntos *l, void *info, int pos);
 int insereNaOrdem(Conjuntos *l, void *info, int (*comp) (void *, void *));
 void mostra_conjuntos(Conjuntos l, void (*mostra) (void *));
-void limpa_lista(Conjuntos *l);
+void limpa_conjunto(Conjuntos *l);
 
 // funcoes especializadas para o trabalho
 

@@ -170,7 +170,7 @@ void mostra_conjuntos(Conjuntos l, void (*mostra) (void *)) {
     }
 }
 
-void limpa_lista(Conjuntos *l) {
+void limpa_conjunto(Conjuntos *l) {
     Elemento *p = l->cabeca, *q;
     while (p) {
         q = p;
@@ -208,7 +208,7 @@ int busca_conj(Conjuntos *m, Conjuntos *sub, void *rep, int(*comp) (void *, void
             return i;
         }
     }
-    return ERROLISTA_VAZIA;
+    return ERRO_CONJUNTO_INEXISTENTE;
 }
 
 int uniao(Conjuntos *m, void *rep1, void *rep2, int(*comp) (void *, void *)) {
