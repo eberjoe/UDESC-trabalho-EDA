@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "lista.h"
 
 void mostra_int(void *x);
@@ -10,10 +9,12 @@ void mostra_tudoXXX(Conjuntos m);
 void destroiTudo(Conjuntos m);
 
 int main() {
-    int lin, i, x, op, rep, cont;
+    int lin, i, x, op;
     printf("Digite o numero de conjuntos: ");
     scanf("%d", &lin);
-    Conjuntos m;
+    Conjuntos m, sub, a, b;
+    a.cabeca = NULL;
+    b.cabeca = NULL;
     int rep1, rep2;
 
     inicializa_conjuntos(&m, sizeof(Conjuntos));
@@ -29,39 +30,44 @@ int main() {
     mostra_tudoXXX(m);
 
     while (1) {
-        printf("\nEscolha uma opcao:\n[1] Unir conjuntos\n[2] Mostrar conjuntos\n[3] Remover conjunto\n[4] Buscar conjunto\n[5] Fazer faxina e sair:\n");
+        printf("\nEscolha uma opcao:\n[1] Unir conjuntos\n[2] Mostrar conjuntos\n[3] Remover conjunto\n[4] Buscar conjunto\n[5] Fazer faxina e sair: ");
         scanf("%d", &op);
         switch(op) {
         case 1:
-            printf("Digite um representante do primeiro conjunto: ");
-            scanf("%d", &rep1);
-            printf("Digite um representante do segundo conjunto: ");
-            scanf("%d", &rep2);
+            while (1) {
+                printf("\nDigite um representante do primeiro conjunto (que recebe a uniao): ");
+                scanf("%d", &rep1);
+                if (busca_conj(&m, &a, &rep1, compara_int))
+                    break;
+                else
+                    printf("\nConjunto nao encontrado!\n");
+            }
+            while (1) {
+                printf("\nDigite um representante do segundo conjunto (que cede): ");
+                scanf("%d", &rep2);
+                if (busca_conj(&m, &b, &rep2, compara_int))
+                    break;
+                else
+                    printf("\nConjunto nao encontrado!\n");
+            }
 
-            Conjuntos a, b;
-            a = busca_conj(&m, &rep1, compara_int);
-            b = busca_conj(&m, &rep2, compara_int);
-
-            uniao(&a, &b);
-
-            m.cabeca->proximo = m.cabeca->proximo->proximo;
-            m.qtd--;
+            uniao(&m, &rep1, &rep2, compara_int);
 
             mostra_tudoXXX(m);
+
+            break;
         case 2:
             mostra_tudoXXX(m);
+            break;
         case 4:
-            printf("Digite o representante: ");
+            printf("\nDigite o representante: ");
             scanf("%d", &x);
 
-            Conjuntos sub;
-            sub = busca_conj(&m, &x, compara_int);
-
-            if (sub.qtd > 0) {
+            if (busca_conj(&m, &sub, &x, compara_int))
                 mostra_conjuntos(sub, mostra_int);
-            } else {
-                printf("\nConjunto não encontrado!");
-            }
+            else
+                printf("\nConjunto nao encontrado!\n");
+            break;
         case 5:
             destroiTudo(m);
         default:

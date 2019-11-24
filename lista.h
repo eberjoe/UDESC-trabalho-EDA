@@ -29,5 +29,5 @@ void limpa_lista(Conjuntos *l);
 // funcoes especializadas para o trabalho
 
 int cria_conjunto(Conjuntos *p, void *rep, int(*comp) (void *, void *));
-int uniao(Conjuntos *a, Conjuntos *b);
-Conjuntos busca_conj(Conjuntos *m, void *rep, int(*comp) (void *, void *));
+int uniao(Conjuntos *m, void *rep1, void *rep2, int(*comp) (void *, void *));
+int busca_conj(Conjuntos *m, Conjuntos *sub, void *rep, int(*comp) (void *, void *));

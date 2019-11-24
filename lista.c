@@ -200,25 +200,42 @@ int cria_conjunto(Conjuntos *p, void *rep, int (*comp)(void *, void *)) {
     return 0;
 }
 
-Conjuntos busca_conj(Conjuntos *m, void *rep, int(*comp) (void *, void *)){
+int busca_conj(Conjuntos *m, Conjuntos *sub, void *rep, int(*comp) (void *, void *)){
     int i;
-    Conjuntos sub;
-
     for (i = 0; i < m->qtd; i++) {
-        leNaPos(m, &sub, i);
-
-        if (!comp(sub.cabeca->info, rep)) {
-            printf("busca_conj sub.cabeca->info %d\n", *(int*) sub.cabeca->info);
-            return sub;
+        leNaPos(m, sub, i);
+        printf("\nhere\n");
+        if (!comp(sub->cabeca->info, rep)) {
+            return 1;
         }
     }
-
-    Conjuntos vazio;
-    return vazio;
+    return 0;
 }
 
-int uniao(Conjuntos *a, Conjuntos *b) {
-    a->cabeca->proximo = b->cabeca;
-    b->cabeca = NULL;
-    return 0;
+int uniao(Conjuntos *m, void *rep1, void *rep2, int(*comp) (void *, void *)) {
+    Conjuntos a, b;
+    int i, j;
+    for (i = 0; i < m->qtd; i++) {
+        leNaPos(m, &a, i);
+        if (!comp(a.cabeca->info, rep1))
+            break;
+    }
+    for (j = 0; j < m->qtd; j++) {
+        leNaPos(m, &b, j);
+        if (!comp(b.cabeca->info, rep2))
+            break;
+    }
+    if (!b.cabeca)
+        return 0;
+    Elemento *e = a.cabeca;
+    while (e->proximo) {
+        e = e->proximo;
+    }
+    e->proximo = b.cabeca;
+    a.qtd += b.qtd;
+    b.qtd = 0;
+    b.cabeca = NULL;
+    modificaNaPos(m, &a, i);
+    removeDaPos(m, &b, j);
+    return 1;
 }
