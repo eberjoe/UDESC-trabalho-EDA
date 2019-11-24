@@ -204,12 +204,11 @@ int busca_conj(Conjuntos *m, Conjuntos *sub, void *rep, int(*comp) (void *, void
     int i;
     for (i = 0; i < m->qtd; i++) {
         leNaPos(m, sub, i);
-        printf("\nhere\n");
         if (!comp(sub->cabeca->info, rep)) {
-            return 1;
+            return i;
         }
     }
-    return 0;
+    return ERROLISTA_VAZIA;
 }
 
 int uniao(Conjuntos *m, void *rep1, void *rep2, int(*comp) (void *, void *)) {

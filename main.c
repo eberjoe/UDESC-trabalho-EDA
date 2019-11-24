@@ -13,8 +13,6 @@ int main() {
     printf("Digite o numero de conjuntos: ");
     scanf("%d", &lin);
     Conjuntos m, sub, a, b;
-    a.cabeca = NULL;
-    b.cabeca = NULL;
     int rep1, rep2;
 
     inicializa_conjuntos(&m, sizeof(Conjuntos));
@@ -37,7 +35,7 @@ int main() {
             while (1) {
                 printf("\nDigite um representante do primeiro conjunto (que recebe a uniao): ");
                 scanf("%d", &rep1);
-                if (busca_conj(&m, &a, &rep1, compara_int))
+                if (busca_conj(&m, &a, &rep1, compara_int) > ERROLISTA_VAZIA)
                     break;
                 else
                     printf("\nConjunto nao encontrado!\n");
@@ -45,7 +43,7 @@ int main() {
             while (1) {
                 printf("\nDigite um representante do segundo conjunto (que cede): ");
                 scanf("%d", &rep2);
-                if (busca_conj(&m, &b, &rep2, compara_int))
+                if (busca_conj(&m, &b, &rep2, compara_int) > ERROLISTA_VAZIA)
                     break;
                 else
                     printf("\nConjunto nao encontrado!\n");
@@ -59,17 +57,27 @@ int main() {
         case 2:
             mostra_tudoXXX(m);
             break;
+        case 3:
+            printf("\nEntre o representante do conjunto a ser removido: ");
+            scanf("%d", &x);
+            i = (busca_conj(&m, &sub, &x, compara_int));
+            if (i > ERROLISTA_VAZIA)
+                removeDaPos(&m, &sub, i);
+            else
+                printf("\nConjunto nao encontrado!\n");
+            break;
         case 4:
             printf("\nDigite o representante: ");
             scanf("%d", &x);
 
-            if (busca_conj(&m, &sub, &x, compara_int))
+            if (busca_conj(&m, &sub, &x, compara_int) > ERROLISTA_VAZIA)
                 mostra_conjuntos(sub, mostra_int);
             else
                 printf("\nConjunto nao encontrado!\n");
             break;
         case 5:
             destroiTudo(m);
+            return 1;
         default:
             break;
         }
