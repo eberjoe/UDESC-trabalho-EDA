@@ -1,7 +1,7 @@
 #define ERROLISTA_VAZIA -1
 #define ERRO_POS_INVALIDA -2
 #define ERRO_ELEMENTOREPETIDO -3
-#define ERRO_CONJUNTO_INEXISTENTE -1
+#define ERRO_CONJUNTO_INEXISTENTE -4
 
 typedef struct ele {
     void *info;
