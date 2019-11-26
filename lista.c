@@ -232,8 +232,6 @@ int uniao(Conjuntos *m, void *rep1, void *rep2, int(*comp) (void *, void *)) {
     }
     e->proximo = b.cabeca;
     a.qtd += b.qtd;
-    b.qtd = 0;
-    b.cabeca = NULL;
     modificaNaPos(m, &a, i);
     removeDaPos(m, &b, j);
     return 1;

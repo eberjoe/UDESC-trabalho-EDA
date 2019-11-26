@@ -7,7 +7,7 @@ int compara_int(void *x, void *y);
 void mostra_tudoXXX(Conjuntos m);
 
 int main() {
-    int lin, i, j, x, op;
+    int lin, i, x, op;
     printf("Digite o numero de conjuntos: ");
     scanf("%d", &lin);
     Conjuntos m, sub, a, b;
@@ -60,8 +60,7 @@ int main() {
             scanf("%d", &x);
             i = (busca_conj(&m, &sub, &x, compara_int));
             if (i != ERRO_CONJUNTO_INEXISTENTE) {
-                for (j = 0; j < i; j++)
-                    removeDaPos(&sub, &x, j);
+                limpa_conjunto(&sub);
                 removeDaPos(&m, &sub, i);
                 printf("\nConjunto removido!\n");
             }
