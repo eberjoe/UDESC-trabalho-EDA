@@ -66,41 +66,6 @@ int insereNoFim(Conjuntos *l, void *info) {
     return 1; // sucesso
 }
 
-int removeDoFim(Conjuntos *l, void *info) {
-    if (lista_vazia(l))
-        return ERROLISTA_VAZIA;
-    if (l->qtd == 1)
-        return removeDoInicio(l, info);
-    Elemento *p = l->cabeca;
-    while (p->proximo->proximo) { // penúltimo
-        p = p->proximo;
-    }
-    memcpy(info, p->proximo->info, l->tamInfo);
-    free(p->proximo->info);
-    free(p->proximo);
-    p->proximo = NULL;
-    l->qtd--;
-    return 1; // sucesso
-}
-
-int insereNaPos(Conjuntos *l, void *info, int pos) {
-    if (pos < 0 || pos > l->qtd)
-        return ERRO_POS_INVALIDA;
-    if (!pos)
-        return insereNoInicio(l, info);
-    Elemento *p = l->cabeca;
-    int cont;
-    for (cont = 0; cont < pos-1; cont++)
-        p = p->proximo;
-    Elemento *novo = aloca_ele(info, l->tamInfo);
-    if (!novo)
-        return 0; // falta memória
-    novo->proximo = p->proximo;
-    p->proximo = novo;
-    l->qtd++;
-    return 1; // sucesso
-}
-
 int removeDaPos(Conjuntos *l, void *info, int pos) {
     if (lista_vazia(l))
         return ERROLISTA_VAZIA;
@@ -145,16 +110,6 @@ int leNaPos(Conjuntos *l, void *info, int pos) {
         p = p->proximo;
     memcpy(info, p->info, l->tamInfo);
     return 1; // sucesso
-}
-
-int insereNaOrdem(Conjuntos *l, void *info, int (*comp) (void *, void *)) {
-    Elemento *p = l->cabeca;
-    int cont = 0;
-    while (p && comp(info, p->info) > 0) {
-        p = p->proximo;
-        cont++;
-    }
-    return insereNaPos(l, info, cont);
 }
 
 void mostra_conjuntos(Conjuntos l, void (*mostra) (void *)) {
