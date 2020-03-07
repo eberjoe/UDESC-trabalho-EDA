@@ -20,8 +20,8 @@ Finalmente, implemente uma aplicação que oferece um menu de texto para a manip
 * Individuais: domínio do assunto e do programa implementado.
 
 ## Informações importantes:
-* [ ] Equipe: 2 ou 3 alunos.
+* [x] Equipe: 2 ou 3 alunos.
 
-* [ ] Entrega: por e-mail, até o dia 27/11.
+* [x] Entrega: por e-mail, até o dia 27/11.
 
-* [ ] Apresentação: dia 27/11, no laboratório, durante o horário de aula. Alternativamente, as equipes que preferirem apresentar antes podem agendar um horário para apresentação na sala do professor.
+* [x] Apresentação: dia 27/11, no laboratório, durante o horário de aula. Alternativamente, as equipes que preferirem apresentar antes podem agendar um horário para apresentação na sala do professor.
